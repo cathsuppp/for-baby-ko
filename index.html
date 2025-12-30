@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Zari Faye</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to bottom, #ffd6e8, #ffffff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.card {
+    background: white;
+    width: 90%;
+    max-width: 420px;
+    padding: 30px;
+    border-radius: 25px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    text-align: center;
+    z-index: 2;
+}
+
+h1 {
+    color: #d63384;
+}
+
+.message-box {
+    margin: 25px 0;
+    padding: 20px;
+    border-radius: 15px;
+    background: #ffe6f0;
+    min-height: 90px;
+    font-size: 16px;
+    color: #444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 25px;
+    background: #d63384;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #b82a6b;
+}
+
+/* 💗 Flying Hearts */
+.heart {
+    position: absolute;
+    bottom: -20px;
+    font-size: 18px;
+    animation: float 6s linear forwards;
+    color: #ff5fa2;
+    opacity: 0;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) scale(0.6);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.9;
+    }
+    100% {
+        transform: translateY(-110vh) scale(1.2);
+        opacity: 0;
+    }
+}
+
+footer {
+    margin-top: 15px;
+    font-size: 13px;
+    color: #777;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>zaripot</h1>
+
+    <div class="message-box" id="message">
+        pindutin mo next, nak
+    </div>
+
+    <button id="nextBtn" onclick="nextMessage()">Next 💌</button>
+
+    <footer> x</footer>
+</div>
+
+<script>
+const messages = [
+    "hi babyyyyy",
+    "i just wanna let you know that you mean so much to me, you light up my world.",
+    "thank you for being my rock and for pushing me to be a better person, thank you for letting me experience everything without hesitation.",
+    "you deserve all the good things in this world, please know that i am always here for you through ups and downs baby, you have me, always.",
+    "being loved by you feels like being chosen everyday, you will always be valued, safe, and loved by me.",
+    "always keep that smile you wear, my pretty lovelove. you're so beautiful.",
+    "i love you and i will always be grateful to have you, mahal ko"
+];
+
+let index = 0;
+let heartInterval;
+
+function nextMessage() {
+    const msgBox = document.getElementById("message");
+    const btn = document.getElementById("nextBtn");
+
+    if (index < messages.length) {
+        msgBox.innerHTML = messages[index];
+        index++;
+    } else {
+        msgBox.innerHTML = "💗";
+        btn.style.display = "none";
+        startHearts();
+    }
+}
+
+function startHearts() {
+    heartInterval = setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "💗";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (16 + Math.random() * 14) + "px";
+        heart.style.animationDuration = (4 + Math.random() * 3) + "s";
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 7000);
+    }, 300);
+}
+</script>
+
+</body>
+</html>
